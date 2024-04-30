@@ -10,7 +10,7 @@ form.addEventListener('submit', (e) => {
 
     const file = avatar.files[0];
 
-    if (file.size > 8000) {
+    if (file.size > 6500) {
         alert('File size exceeds the limit of 8kb. Please upload a smaller file.');
         return;
     }

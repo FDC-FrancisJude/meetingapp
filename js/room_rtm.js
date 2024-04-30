@@ -11,10 +11,12 @@ let handleMemberJoined = async (MemberId) => {
 
 let addMemberToDom = async (MemberId) => {
     let {name} = await rtmClient.getUserAttributesByKeys(MemberId, ['name'])
-
+    let {avatar} = await rtmClient.getUserAttributesByKeys(MemberId, ['avatar'])
+    console.log('Member avatar:', {avatar})
     let membersWrapper = document.getElementById('member__list')
     let memberItem = `<div class="member__wrapper" id="member__${MemberId}__wrapper">
                         <span class="green__icon"></span>
+                        <img class="member__avatar" style="height: 40px; width: 40px" src="${avatar}" alt="Member Avatar">
                         <p class="member_name">${name}</p>
                     </div>`
 

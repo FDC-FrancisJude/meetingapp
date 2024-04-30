@@ -88,3 +88,24 @@
 .avatar__option__selected {
   border: 3px solid #845695;
 }
+
+#image-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#image-preview img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
+  border: 2px solid #ccc;
+}
+
+@media screen and (max-width: 600px){
+  #image-preview img {
+    height: 100px;
+    width: 100px;
+  }
+}

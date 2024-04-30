@@ -21,7 +21,8 @@ if(!roomId){
 }
 
 let displayName = sessionStorage.getItem('display_name')
-if(!displayName){
+let avatar = sessionStorage.getItem('avatar')
+if(!displayName && !avatar){
     window.location = 'lobby.html'
 }
 
@@ -35,7 +36,7 @@ let joinRoomInit = async () => {
     rtmClient = await AgoraRTM.createInstance(APP_ID)
     await rtmClient.login({uid,token})
 
-    await rtmClient.addOrUpdateLocalUserAttributes({'name':displayName})
+    await rtmClient.addOrUpdateLocalUserAttributes({'name':displayName, 'avatar':avatar})
 
     channel = await rtmClient.createChannel(roomId)
     await channel.join()

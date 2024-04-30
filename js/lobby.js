@@ -8,26 +8,54 @@ if(displayName){
 form.addEventListener('submit', (e) => {
     e.preventDefault()
 
-    const file = avatar.files[0];
-
-    if (file.size > 6500) {
-        alert('File size exceeds the limit of 8kb. Please upload a smaller file.');
-        return;
-    }
+    const goTo = document.getElementById('go_to');
+    goTo.disabled = true;
+    goTo.textContent = 'Joining...';
 
     sessionStorage.setItem('display_name', e.target.name.value)
-    uploadFile()
-    let inviteCode = e.target.room.value
-    if(!inviteCode){
-        inviteCode = String(Math.floor(Math.random() * 10000))
-    }
-    window.location = `index.html?room=${inviteCode}`
+   
+    const file = avatar.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+        const imageData = event.target.result.split(',')[1];
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'https://api.imgur.com/3/image', true);
+        xhr.setRequestHeader('Authorization', 'Client-ID 546c25a59c58ad7');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText);
+                if (response && response.data && response.data.link) {
+                    const imgurLink = response.data.link;
+
+                    sessionStorage.setItem('avatar', imgurLink)
+
+                    let inviteCode = e.target.room.value
+                    if(!inviteCode){
+                        inviteCode = String(Math.floor(Math.random() * 10000))
+                    }
+                    window.location = `index.html?room=${inviteCode}`
+                } else {
+                    alert('Failed to upload image to Imgur');
+                }
+            }
+        };
+
+        xhr.send(JSON.stringify({ image: imageData }));
+    };
+
+    reader.readAsDataURL(file);
+
+    
 })
 
 function previewImage(input) {
     const imagePreview = document.getElementById('image-preview');
     const file = input.files[0];
-    console.log(file);
+
     sessionStorage.setItem('display_avatar', file.name);
     imagePreview.innerHTML = '';
 
@@ -45,30 +73,5 @@ function previewImage(input) {
         reader.readAsDataURL(input.files[0]);
     } else {
         imagePreview.innerHTML = 'No image selected';
-    }
-}
-
-function uploadFile() {
-    const fileInput = document.getElementById('avatar');
-    const file = fileInput.files[0];
-
-    if (file) {
-        const reader = new FileReader();
-
-        reader.onload = function(event) {
-            const imageData = event.target.result;
-
-            // Save image data to local storage
-            sessionStorage.setItem('avatar', imageData);
-            console.log('File uploaded successfully');
-        };
-
-        reader.onerror = function(event) {
-            console.error('Error reading file:', event.target.error);
-        };
-
-        reader.readAsDataURL(file);
-    } else {
-        console.error('No file selected');
     }
 }

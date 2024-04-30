@@ -16,7 +16,7 @@ let addMemberToDom = async (MemberId) => {
     let membersWrapper = document.getElementById('member__list')
     let memberItem = `<div class="member__wrapper" id="member__${MemberId}__wrapper">
                         <span class="green__icon"></span>
-                        <img class="member__avatar" style="height: 40px; width: 40px" src="${avatar}" alt="Member Avatar">
+                        <img class="member__avatar" style="height: 40px; width: 40px; border-radius: 50% !important; box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); border: 2px solid #ccc;}" src="${avatar}" alt="Member Avatar">
                         <p class="member_name">${name}</p>
                     </div>`
 

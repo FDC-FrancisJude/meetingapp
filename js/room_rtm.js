@@ -86,7 +86,7 @@ let addMessageToDom = (name, message) => {
     let messagesWrapper = document.getElementById('messages')
 
     let newMessage = `<div class="message__wrapper">
-                        <div class="message__body">
+                        <div class="message__body" id="message__body">
                             <strong class="message__author">${name}</strong>
                             <p class="message__text">${message}</p>
                         </div>
@@ -98,6 +98,7 @@ let addMessageToDom = (name, message) => {
     if(lastMessage){
         lastMessage.scrollIntoView()
     }
+    setTheme() 
 }
 
 

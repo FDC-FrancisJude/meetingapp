@@ -74,3 +74,79 @@ let hideDisplayFrame = () => {
 }
 
 displayFrame.addEventListener('click', hideDisplayFrame)
+
+
+$("#darkModeSwitch").click(function(){
+  var hasClassDark = $("#darkModeSwitch").prop('checked') ? true : false;
+
+  sessionStorage.setItem('darkmode', hasClassDark);
+  setTheme()
+  
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  setTheme()
+});
+
+function setTheme() {
+  var darkmode = sessionStorage.getItem('darkmode') ? sessionStorage.getItem('darkmode') : true;
+  console.log(darkmode);
+  
+  $('#darkModeSwitch').prop('checked', darkmode == 'true' ? true : false);
+  $("body").toggleClass("dark")
+  .css(
+          darkmode == 'true' ?
+      {background:"#1a1a1a", color:"#f9f9f9"} : {background:"#f9f9f9", color:"#202225"}
+  );
+  $("header").toggleClass("dark")
+  .css(
+          darkmode == 'true' ?
+      {background:"#1a1a1a", color:"#f9f9f9"} : {background:"#8a0000", color:"#202225"}
+  );
+  $("#members__header").toggleClass("dark")
+  .css(
+          darkmode == 'true' ?
+      {background:"#323143", color:"#f9f9f9"} : {background:"#c2c2c2", color:"#202225"}
+  );
+  $("#members__count").toggleClass("dark")
+  .css(
+          darkmode == 'true' ?
+      {background:"#1d1d1c", color:"#f9f9f9"} : {background:"#c2c2c2", color:"#202225"}
+  );
+  $("#member__list").toggleClass("dark")
+  .css(
+          darkmode == 'true' ?
+      {background:"#1d1d1c", color:"#f9f9f9"} : {background:"#e6e6e6", color:"#202225"}
+  );
+  $("#members__container").toggleClass("dark")
+  .css(
+          darkmode == 'true' ?
+      {background:"#1d1d1c", color:"#f9f9f9"} : {background:"#e6e6e6", color:"#202225"}
+  );
+  $("#messages__container").toggleClass("dark")
+  .css(
+          darkmode == 'true' ?
+      {background:"#1d1d1c", color:"#f9f9f9"} : {background:"#e6e6e6", color:"#202225"}
+  );
+  $(".message__body").toggleClass("dark")
+  .css(
+          darkmode == 'true' ?
+      {background:"#363739", color:"#f9f9f9"} : {background:"#c2c2c2", color:"#202225"}
+  );
+  $("#message__form").toggleClass("dark")
+  .css(
+          darkmode == 'true' ?
+      {background:"#363739", color:"#f9f9f9"} : {background:"#c2c2c2", color:"#202225"}
+  );
+
+  $("input").toggleClass("dark")
+		.css(
+            darkmode == 'true' ?
+		  	{background:"#3f434a", color:"#f9f9f9"} : {background:"#FFF", color:"#202225"}
+		);
+  $("#stream__box").toggleClass("dark")
+		.css(
+            darkmode == 'true' ?
+		  	{background:"#3f434a", color:"#f9f9f9"} : {background:"#FFF", color:"#202225"}
+		);
+}

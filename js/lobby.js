@@ -75,3 +75,47 @@ function previewImage(input) {
         imagePreview.innerHTML = 'No image selected';
     }
 }
+
+$(".darkmode").click(function(){
+    var hasClassDark = $("body").hasClass("dark") ? true : false
+    
+    sessionStorage.setItem('darkmode', hasClassDark);
+    setTheme()
+    
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    setTheme()
+});
+
+function setTheme() {
+    var darkmode = sessionStorage.getItem('darkmode');
+    console.log(darkmode);
+    
+
+	$("body").toggleClass("dark")
+		.css(
+            darkmode == 'true' ?
+		  	{background:"#1a1a1a", color:"#f9f9f9"} : {background:"#f9f9f9", color:"#202225"}
+		);
+    $("#form__container").toggleClass("dark")
+		.css(
+            darkmode == 'true' ?
+		  	{background:"#262625", color:"#f9f9f9"} : {background:"#e6e6e6", color:"#202225"}
+		);
+    $("input").toggleClass("dark")
+		.css(
+            darkmode == 'true' ?
+		  	{background:"#363739", color:"#f9f9f9"} : {background:"#FFF", color:"#202225"}
+		);
+    $("#form__container__header").toggleClass("dark")
+		.css(
+            darkmode == 'true' ?
+		  	{background:"#363739", color:"#f9f9f9"} : {background:"#c2c2c2", color:"#202225"}
+		);
+    $("header").toggleClass("dark")
+		.css(
+            darkmode == 'true' ?
+		  	{background:"#1a1a1a", color:"#f9f9f9"} : {background:"#8a0000", color:"#202225"}
+		);
+}

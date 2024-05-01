@@ -7,19 +7,26 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='styles/main.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='styles/lobby.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body>
+<body class="dark">
 
-    <header id="nav">
-       <div class="nav--list">
+    <header id="nav" class="dark">
+        <div class="nav--list">
 <!--             <a href="lobby.html"> -->
                 <h3 id="logo">
                     <img src="./images/logo.png" alt="Site Logo">
                     <span>MCC Meeeting App</span>
                 </h3>
 <!--             </a> -->
-       </div>
-
+        </div>
+        <div class="darkmode">
+            <div class="light fa fa-sun"></div>
+            <div class="dark fa fa-moon"></div>
+        </div>
         <div id="nav__links">
             <!-- <a class="nav__link" href="lobby.html">
                 Lobby
@@ -32,10 +39,10 @@
         </div>
     </header>
 
-    <main id="room__lobby__container">
+    <main id="room__lobby__container" class="dark">
         
-        <div id="form__container">
-             <div id="form__container__header">
+        <div id="form__container" class="dark">
+             <div id="form__container__header" class="dark">
                  <p>👋 Create or Join Room</p>
              </div>
  
@@ -46,17 +53,17 @@
 
                 <div class="form__field__wrapper">
                     <label for="avatar">Upload your avatar:</label>
-                    <input type="file" id="avatar" name="avatar" accept="image/*" required onchange="previewImage(this)"/>
+                    <input type="file" class="dark" id="avatar" name="avatar" accept="image/*" required onchange="previewImage(this)"/>
                 </div>
  
                  <div class="form__field__wrapper">
                      <label>Your Name</label>
-                     <input type="text" name="name" required placeholder="Enter your display name..." />
+                     <input type="text" class="dark" name="name" required placeholder="Enter your display name..." />
                  </div>
  
                  <div class="form__field__wrapper">
                      <label>Room Name</label>
-                     <input type="text" name="room" required  placeholder="Enter room name..." />
+                     <input type="text" class="dark" name="room" required  placeholder="Enter room name..." />
                  </div>
  
                  <div class="form__field__wrapper">

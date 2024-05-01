@@ -77,8 +77,8 @@ function previewImage(input) {
 }
 
 $("#darkModeSwitch").click(function(){
-    var hasClassDark = $("body").hasClass("dark") ? true : false
-    
+    var hasClassDark = $("#darkModeSwitch").prop('checked') ? true : false;
+
     sessionStorage.setItem('darkmode', hasClassDark);
     setTheme()
     

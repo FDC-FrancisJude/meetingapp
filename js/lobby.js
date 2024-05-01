@@ -76,7 +76,7 @@ function previewImage(input) {
     }
 }
 
-$(".darkmode").click(function(){
+$("#darkModeSwitch").click(function(){
     var hasClassDark = $("body").hasClass("dark") ? true : false
     
     sessionStorage.setItem('darkmode', hasClassDark);
@@ -89,10 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function setTheme() {
-    var darkmode = sessionStorage.getItem('darkmode');
+    var darkmode = sessionStorage.getItem('darkmode') ? sessionStorage.getItem('darkmode') : true;
     console.log(darkmode);
     
-
+    $('#darkModeSwitch').prop('checked', darkmode == 'true' ? true : false);
 	$("body").toggleClass("dark")
 		.css(
             darkmode == 'true' ?
